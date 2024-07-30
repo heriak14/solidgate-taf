@@ -1,0 +1,9 @@
+[
+  {
+    "testId": "successCard",
+    "cardNumber": "4067429974719265",
+    "expirationDate": "12/24",
+    "cvv": "123",
+    "cardHolder": "John Doe"
+  }
+]
