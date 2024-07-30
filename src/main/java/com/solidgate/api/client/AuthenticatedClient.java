@@ -36,7 +36,7 @@ public abstract class AuthenticatedClient {
     private Map<String, String> getAuthHeaders(Object requestBody) {
         String jsonString = convertObjectToJsonString(requestBody);
         return Map.of(
-                MERCHANT, EnvProperties.getPublicKey(),
+                MERCHANT, merchant,
                 SIGNATURE, SignatureGenerator.generateSignature(merchant, jsonString, secretKey)
         );
     }
