@@ -10,6 +10,14 @@ public class EnvProperties {
         loadProperties();
     }
 
+    private static void loadProperties() {
+        try {
+            PROPERTIES.load(EnvProperties.class.getClassLoader().getResourceAsStream("env.properties"));
+        } catch (Exception e) {
+            throw new RuntimeException("Failed to load properties file", e);
+        }
+    }
+
     public static String getPaymentPageBaseUrl() {
         return getProperty("payment.page.base.url");
     }
@@ -28,14 +36,6 @@ public class EnvProperties {
 
     public static String getSecretKey() {
         return getProperty("secret.key");
-    }
-
-    private static void loadProperties() {
-        try {
-            PROPERTIES.load(EnvProperties.class.getClassLoader().getResourceAsStream("env.properties"));
-        } catch (Exception e) {
-            throw new RuntimeException("Failed to load properties file", e);
-        }
     }
 
     private static String getProperty(String key) {

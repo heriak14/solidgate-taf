@@ -25,15 +25,19 @@ public abstract class AuthenticatedClient {
     }
 
     protected RequestSpecification getAuthenticatedClient(Object requestBody) {
-        String jsonString = convertObjectToJsonString(requestBody);
-        Map<String, String> authHeaders = Map.of(
-                MERCHANT, EnvProperties.getPublicKey(),
-                SIGNATURE, SignatureGenerator.generateSignature(merchant, jsonString, secretKey)
-        );
+        Map<String, String> authHeaders = getAuthHeaders(requestBody);
         return RestAssured.given()
                 .filters(new RequestLoggingFilter(), new ResponseLoggingFilter())
                 .headers(authHeaders)
                 .baseUri(baseUri)
                 .body(requestBody);
+    }
+
+    private Map<String, String> getAuthHeaders(Object requestBody) {
+        String jsonString = convertObjectToJsonString(requestBody);
+        return Map.of(
+                MERCHANT, EnvProperties.getPublicKey(),
+                SIGNATURE, SignatureGenerator.generateSignature(merchant, jsonString, secretKey)
+        );
     }
 }

@@ -14,4 +14,8 @@ public class SuccessPaymentPage extends BasePage {
                 .as("Success Payment message")
                 .shouldBe(visible);
     }
+
+    public boolean isSuccessMessageVisible() {
+        return successMessage.is(visible);
+    }
 }

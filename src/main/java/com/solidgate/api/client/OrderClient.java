@@ -2,7 +2,6 @@ package com.solidgate.api.client;
 
 import com.solidgate.core.EnvProperties;
 import io.restassured.response.Response;
-import io.restassured.specification.RequestSpecification;
 import java.util.Map;
 
 public class OrderClient extends AuthenticatedClient {

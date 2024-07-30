@@ -28,4 +28,5 @@ test {
     options {
         systemProperties(System.getProperties())
     }
+    testLogging.showStandardStreams = true
 }
